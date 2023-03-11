@@ -1,4 +1,3 @@
-import jdk.jfr.internal.tool.Main;
 
 import java.util.Scanner;
 
