@@ -15,6 +15,8 @@ public class Main {
         temperatureConversation(236, 1);
 
         monthlyPayment();
+
+        sqrt();
     }
 
     public static int dayOfWeek(int month, int date, int year) {
@@ -84,4 +86,16 @@ public class Main {
         float payment = (float) ((P * r) / (1 - Math.pow(1 + r, -n)));
         System.out.println("Payment:-" + payment);
     }
+
+    public static void sqrt() {
+        System.out.println("Enter a non negative number:-");
+        int c = sc.nextInt();
+        double t = c;
+        double epsilon = 1e-15;
+        while (Math.abs(t - c / t) > epsilon * t) {
+            t = (c / t + t) / 2.0;
+        }
+        System.out.println("Result:-" + t);
+    }
+
 }
