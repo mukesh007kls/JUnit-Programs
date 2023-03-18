@@ -4,19 +4,25 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        readDetails();
-
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the ammount:-");
-        int money = sc.nextInt();
-        calculateNotes(money);
-        System.out.println("Total number of notes:- " + totalNumberOfNotes);
-
-        temperatureConversation(236, 1);
-
-        monthlyPayment();
-
-        sqrt();
+        System.out.println("Enter choice:-");
+        System.out.println("1.Day of week\n2.Temperature check\n3.Monthly payment\n4.Square root\n5.to binary\n6.Vending machine");
+        int choice=sc.nextInt();
+        switch (choice){
+            case 1->readDetails();
+            case 2->temperatureConversation();
+            case 3->monthlyPayment();
+            case 4->sqrt();
+            case 5->{
+                System.out.println("Enter number");
+                int num= sc.nextInt();
+                toBinary(num);
+            }
+            case 6->{
+                System.out.println("Enter amount to withdraw:-");
+                int money= sc.nextInt();
+                calculateNotes(money);
+            }
+        }
     }
 
     public static int dayOfWeek(int month, int date, int year) {
@@ -66,8 +72,11 @@ public class Main {
     public static final int CELSIUS_To_FAHRENHEIT = 1;
     public static final int FAHRENHEIT_To_CELSIUS = 2;
 
-    public static void temperatureConversation(double temp, int choice) {
+    public static void temperatureConversation() {
         System.out.println("Enter choice:-\n1.Celsius to fahrenheit\n2.Fahrenheit to celsius");
+        int choice= sc.nextInt();
+        System.out.println("Enter temperature:-");
+        double temp= sc.nextDouble();
         switch (choice) {
             case CELSIUS_To_FAHRENHEIT -> System.out.println((temp * 9.0 / 5) + 32);
             case FAHRENHEIT_To_CELSIUS -> System.out.println((temp - 32) * 5.0 / 9);
@@ -96,6 +105,26 @@ public class Main {
             t = (c / t + t) / 2.0;
         }
         System.out.println("Result:-" + t);
+    }
+
+    public static StringBuilder toBinary(int num) {
+        StringBuilder stringBuilder = new StringBuilder();
+        while (num != 0) {
+            stringBuilder.append(num % 2);
+            num = num / 2;
+        }
+        int i = 2;
+        boolean check = false;
+        while (!check) {
+            if (stringBuilder.length() <= 1) {
+                while (stringBuilder.length() < 1) {
+                    stringBuilder.append(0);
+                }
+                check = true;
+            }
+            i *= 2;
+        }
+        return stringBuilder.reverse();
     }
 
 }
